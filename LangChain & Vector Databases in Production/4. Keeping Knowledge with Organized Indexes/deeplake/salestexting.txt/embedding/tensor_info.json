@@ -1,0 +1,9 @@
+{
+    "embedding": {
+        "chunk_size": null,
+        "deployment": null,
+        "embedding_ctx_length": null,
+        "max_retries": null,
+        "model": null
+    }
+}

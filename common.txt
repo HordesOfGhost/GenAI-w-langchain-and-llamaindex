@@ -1,0 +1,29 @@
+from dotenv import load_dotenv
+
+load_dotenv('../../.env')
+
+
+
+from langchain import HuggingFaceHub
+
+# initialize Hub LLM
+llm_t5 = HuggingFaceHub(
+    repo_id='google/flan-t5-large',
+    model_kwargs={'temperature':0,"max_length": 64,"max_new_tokens":128}
+)
+
+llm_mistral = HuggingFaceHub(
+    repo_id='mistralai/Mistral-7B-Instruct-v0.2',
+    model_kwargs={'temperature':0.5,"max_length": 64,"max_new_tokens":512}
+)
+
+from langchain_community.embeddings import HuggingFaceEmbeddings
+
+embeddings = HuggingFaceEmbeddings(model_name = 'sentence-transformers/all-MiniLM-L6-v2',
+                                       model_kwargs = {'device':'cpu'} )
+
+
+from langchain_community.chat_models.huggingface import ChatHuggingFace
+
+chat_t5 = ChatHuggingFace(llm=llm_t5)
+chat_mistral = ChatHuggingFace(llm=llm_mistral)
