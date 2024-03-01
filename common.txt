@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 
-load_dotenv('../../.env')
+load_dotenv('../../../.env')
 
 
 
@@ -34,4 +34,12 @@ from langchain import HuggingFaceHub
 llm = HuggingFaceHub(
     repo_id='mistralai/Mistral-7B-Instruct-v0.2',
     model_kwargs={'temperature':0.5,"max_length": 64,"max_new_tokens":512}
+)
+
+
+from llama_index.core import set_global_tokenizer
+from transformers import AutoTokenizer
+
+set_global_tokenizer(
+    AutoTokenizer.from_pretrained("HuggingFaceH4/zephyr-7b-alpha").encode
 )
